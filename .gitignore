@@ -4,3 +4,5 @@
 .settings/
 *swp
 *swo
+.DS_Store
+/build/
