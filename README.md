@@ -1,6 +1,8 @@
 cordova-comscore-plugin
 =======================
 
+## For ComScore SDK before v5.X
+
 Cordova (PhoneGap) 3.0+ Plugin to connect to ComScore SDK's in Android devices.
 
 
@@ -29,4 +31,10 @@ In your 'deviceready' handler, set up your ComScore tracker:
 * `comScorePlugin.setCustomerData("customerID", "customerKey");` where CustomerKey is your publisher secret parameter
 
 
+## For ComScore SDK v5.X
 
+Changes has been made to use the ComScore SDK v5.2.0.170406.
+
+`DONE`: Android
+
+`TODO`: ios
