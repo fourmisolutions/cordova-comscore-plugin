@@ -6,11 +6,17 @@ var ComScorePlugin = {
 	initClient: function (customerID, customerKey, success, error) {
 		cordova.exec(success, error, 'ComScorePlugin', 'initClient', [customerID, customerKey]);
 	},
+	initClientWithName: function (customerID, customerKey, appName, success, error) {
+		cordova.exec(success, error, 'ComScorePlugin', 'initClientWithName', [customerID, customerKey, appName]);
+	},
 	notifyEnterForeground: function (success, error) {
 		cordova.exec(success, error, 'ComScorePlugin', 'notifyEnterForeground', []);
 	},
 	notifyExitForeground: function (success, error) {
 		cordova.exec(success, error, 'ComScorePlugin', 'notifyExitForeground', []);
+	},
+	notifyScreenView: function (screenName, success, error) {
+		cordova.exec(success, error, 'ComScorePlugin', 'notifyScreenView', [screenName]);
 	},
 		
 	// TODO: comscore sdk before v5 - retained for ios
