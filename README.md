@@ -33,7 +33,7 @@ In your 'deviceready' handler, set up your ComScore tracker:
 
 ## For ComScore SDK v5.X
 
-Changes has been made to use the ComScore SDK v5.2.0.170406.
+Changes has been made to use the ComScore SDK v5.X.
 
 `DONE`: Android, iOS
 
