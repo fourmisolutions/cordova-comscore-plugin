@@ -1,63 +1,49 @@
 #import <Cordova/CDV.h>
+#import <ComScore/ComScore.h>
 #import "ComScorePlugin.h"
-#import "CSComScore.h"
+
+#if DEBUG == 0
+#define DebugLog(...)
+#elif DEBUG == 1
+#define DebugLog(...) NSLog(__VA_ARGS__)
+#endif
 
 @implementation ComScorePlugin
 
 - (void) pluginInitialize
 {
-    [CSComScore setAppContext];
+    DebugLog(@"%s", __PRETTY_FUNCTION__);
 }
 
-- (void)setAppContext:(CDVInvokedUrlCommand*)command
+- (void)initClient:(CDVInvokedUrlCommand*)command
 {
-    [CSComScore setAppContext];
-}
-
-- (void)setCustomerData:(CDVInvokedUrlCommand*)command
-{
-
     NSString *customerId = [command.arguments objectAtIndex:0];
     NSString *customerKey = [command.arguments objectAtIndex:1];
-
-    [CSComScore setCustomerC2: customerId];
-    [CSComScore setPublisherSecret: customerKey];
+    
+    DebugLog(@"%s customerId=%@, customerKey=%@", __PRETTY_FUNCTION__, customerId, customerKey);
+    
+    SCORPublisherConfiguration *myConfig =
+        [SCORPublisherConfiguration publisherConfigurationWithBuilderBlock:^(SCORPublisherConfigurationBuilder *builder) {
+                builder.publisherId = customerId;
+                builder.publisherSecret = customerKey;
+                builder.usagePropertiesAutoUpdateMode = SCORUsagePropertiesAutoUpdateModeForegroundOnly;
+            }];
+    [[SCORAnalytics configuration] addClientWithConfiguration:myConfig];
+    
+    DebugLog(@"%s start", __PRETTY_FUNCTION__);
+    [SCORAnalytics start];
 }
 
-- (void) setAppName:(CDVInvokedUrlCommand*)command
+- (void) notifyEnterForeground:(CDVInvokedUrlCommand*)command
 {
-    NSString *appName = [command.arguments objectAtIndex:0];
-    [CSComScore setAppName: appName];
+    DebugLog(@"%s", __PRETTY_FUNCTION__);
+    [SCORAnalytics notifyEnterForeground];
 }
 
-
-- (void) onEnterForeground:(CDVInvokedUrlCommand*)command
+- (void) notifyExitForeground:(CDVInvokedUrlCommand*)command
 {
-    [CSComScore onEnterForeground];
-}
-
-- (void) onExitForeground:(CDVInvokedUrlCommand*)command
-{
-    [CSComScore onExitForeground];
-}
-
-- (void) autoUpdateForeground:(CDVInvokedUrlCommand*)command
-{
-    NSString *strIntervel = [command.arguments objectAtIndex:0];
-    NSInteger interval = [strIntervel intValue];
-    [CSComScore enableAutoUpdate:interval foregroundOnly:YES];
-}
-
-- (void) autoUpdateBackground:(CDVInvokedUrlCommand*)command
-{
-    NSString *strIntervel = [command.arguments objectAtIndex:0];
-    NSInteger interval = [strIntervel intValue];
-    [CSComScore enableAutoUpdate:interval foregroundOnly:NO];
-}
-
-- (void) start:(CDVInvokedUrlCommand*)command 
-{
-    [CSComScore start];
+    DebugLog(@"%s", __PRETTY_FUNCTION__);
+    [SCORAnalytics notifyExitForeground];
 }
 
 @end

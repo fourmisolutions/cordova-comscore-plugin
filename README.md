@@ -33,8 +33,26 @@ In your 'deviceready' handler, set up your ComScore tracker:
 
 ## For ComScore SDK v5.X
 
-Changes has been made to use the ComScore SDK v5.2.0.170406.
+Changes has been made to use the ComScore SDK v5.X.
 
-`DONE`: Android
+`DONE`: Android, iOS
 
-`TODO`: ios
+Sample usage in Ionic 1 project:
+```
+...
+$ionicPlatform.ready(function() {
+   ...
+   ComScorePlugin.initClient("[ComScore Publisher Id]", "[ComsCore Publisher Secret]");
+   
+   $ionicPlatform.on('pause', function() {
+	   ComScorePlugin.notifyExitForeground();
+   });
+
+   $ionicPlatform.on('resume', function() {
+	   ComScorePlugin.notifyEnterForeground();
+   });
+   ...
+}
+...
+```
+*`Note:` Replace `[ComScore Publisher Id]` and `[ComsCore Publisher Secret]` with the intended values accordingly.*
