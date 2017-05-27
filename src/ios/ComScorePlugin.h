@@ -2,13 +2,8 @@
 
 @interface ComScorePlugin : CDVPlugin
 
-- (void) setAppContext:(CDVInvokedUrlCommand*)command;
-- (void) setCustomerData:(CDVInvokedUrlCommand*)command;
-- (void) setAppName:(CDVInvokedUrlCommand*)command;
-- (void) onEnterForeground:(CDVInvokedUrlCommand*)command;
-- (void) onExitForeground:(CDVInvokedUrlCommand*)command;
-- (void) autoUpdateForeground:(CDVInvokedUrlCommand*)command;
-- (void) autoUpdateBackground:(CDVInvokedUrlCommand*)command;
-- (void) start:(CDVInvokedUrlCommand*)command;
+- (void) initClient:(CDVInvokedUrlCommand*)command;
+- (void) notifyEnterForeground:(CDVInvokedUrlCommand*)command;
+- (void) notifyExitForeground:(CDVInvokedUrlCommand*)command;
 
 @end
