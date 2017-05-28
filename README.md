@@ -37,6 +37,12 @@ Changes has been made to use the ComScore SDK v5.X.
 
 `DONE`: Android, iOS
 
+#Installing from Fourmisolutions repository:
+
+```bash
+cordova plugin add https://github.com/fourmisolutions/cordova-comscore-plugin.git
+```
+
 Sample usage in Ionic 1 project:
 ```
 ...
