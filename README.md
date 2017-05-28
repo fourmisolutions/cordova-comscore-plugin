@@ -43,14 +43,6 @@ Sample usage in Ionic 1 project:
 $ionicPlatform.ready(function() {
    ...
    ComScorePlugin.initClient("[ComScore Publisher Id]", "[ComsCore Publisher Secret]");
-   
-   $ionicPlatform.on('pause', function() {
-	   ComScorePlugin.notifyExitForeground();
-   });
-
-   $ionicPlatform.on('resume', function() {
-	   ComScorePlugin.notifyEnterForeground();
-   });
    ...
 }
 ...
